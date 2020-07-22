@@ -1,0 +1,127 @@
+{% extends 'AdminTemplate/AdminBase.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h4 class="mt-4">CATEGORY</h4>
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminHome' %}">Dashboard</a> </li>
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminPackageView' %}">Packages</a> </li>
+                <li class="breadcrumb-item active">Add/Edit Package</li>
+            </ol>
+
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Add/Edit Packages</div>
+                <div class="card-body">
+                    <form action="." method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- {{form.as_p}} -->
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Active</label>
+                                    {{form.active}}
+                                </div>
+                            </div>   
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Best Value</label>
+                                    {{form.best_value}}
+                                </div>
+                            </div>   
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Recommended</label>
+                                    {{form.recommended}}
+                                </div>
+                            </div>       
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="section">Section</label>
+                                    {{form.section}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="category">Parent Category</label>
+                                    {{form.category}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="package_name">Package Name</label>
+                                    {{form.package_name}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="package_url">Package Url</label>
+                                    {{form.package_url}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="package_name">Package Price</label>
+                                    {{form.package_price}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="package_url">Package Discount</label>
+                                    {{form.package_discount}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="package_desc">Package Description</label>
+                                    {{form.package_overview}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="package_desc">Package Itinerary</label>
+                                    {{form.package_itinerary}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <h3 class="text-center my-2">SEO</h3>
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Tags</label>
+                                    {{form.meta_tags}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Keywords</label>
+                                    {{form.meta_keywords}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Description</label>
+                                    {{form.meta_description}}
+                                </div>
+                            </div>       
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Description</label>
+                                    {{form.package_image}}
+                                </div>
+                            </div>        
+                            
+                        </div>
+                        <div class="">
+                            <button type="submit" class="btn btn-outline-success px-5">Submit</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'AdminTemplate/AdminBase.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h4 class="mt-4">CATEGORY</h4>
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminHome' %}">Dashboard</a> </li>
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminCategoryView' %}">Categories</a> </li>
+                <li class="breadcrumb-item active">Add/Edit Category</li>
+            </ol>
+
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Add/Edit Category</div>
+                <div class="card-body">
+                    <form action="." method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="category_image">Active</label>
+                                    {{form.active}}
+                                    
+                                </div>
+                            </div>    
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                   
+                                    <label for="category_image">Popular</label>
+                                    {{form.popular}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="section">Section</label>
+                                    {{form.section}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="parent_category">Parent Category</label>
+                                    {{form.parent_category}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="category_name">Category_Name</label>
+                                    {{form.category_name}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form group">
+                                    <label for="category_url">Category Url</label>
+                                    {{form.category_url}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="category_desc">Category Description</label>
+                                    {{form.category_desc}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <h3 class="text-center my-2">SEO</h3>
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Tags</label>
+                                    {{form.meta_tags}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Keywords</label>
+                                    {{form.meta_keywords}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="meta_tags">Meta Description</label>
+                                    {{form.meta_description}}
+                                </div>
+                            </div>  
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form group">
+                                    <label for="category_image">Category image</label>
+                                    {{form.category_image}}
+                                </div>
+                            </div>        
+                            
+                        </div>
+
+                        <div class="">
+                            <button type="submit" class="btn btn-outline-success px-5">Submit</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

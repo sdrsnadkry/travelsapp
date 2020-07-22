@@ -1,0 +1,76 @@
+{% extends "ClientTemplate/base.html" %}
+{% load static %}
+
+{% block content %}
+<div id="page_caption" class="hasbg parallax" style="background-image:url(/media/{{categoryObject.category_image}});">
+    <div class="overlay_background" style="background:#000000;background:rgb(0,0,0,0.5);background:rgba(0,0,0,0.3);"></div>
+    <div class="page_title_wrapper">
+        <div class="page_title_inner">
+            <div class="page_title_content">
+                <h1>{{categoryObject.category_name}}</h1>
+                <div class="page_tagline">
+                     </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Begin content -->
+<div id="page_content_wrapper" class="hasbg ">
+    <div class="single_tour_content">
+        <p class="p1">{{categoryObject.category_desc|safe}}</p>
+    </div>
+    <!-- Begin content -->
+    <div class="inner">
+        <div class="inner_wrapper nopadding">
+            <div id="page_main_content" class="sidebar_content full_width fixed_column">
+                <div class="standard_wrapper">
+                    <div id="portfolio_filter_wrapper" class="gallery classic three_cols portfolio-content section content clearfix" data-columns="3">
+                        
+                        {% for package in allPackages %}
+                        <div class="element grid classic2_cols animated2">
+                            <div class="one_half gallery2 classic static filterable portfolio_type themeborder" data-id="post-2">
+                                <a class="tour_image" href="{% url 'travelsapp:packageDetails' package.id %}">
+                                    <img src="/media/{{package.package_image}}" alt="French Autumn">
+                                    <div class="tour_price ">
+                                        Rs {{package.package_discount}} </div>
+                                </a>
+                                <div class="portfolio_info_wrapper">
+                                    <a class="tour_link" href="{% url 'travelsapp:packageDetails' package.id %}">
+                                        <h4>{{package.package_name}}</h4>
+                                    </a>
+                                    <div class="tour_excerpt">
+                                        <p>{{package.category}}</p>
+                                    </div>
+                                    <div class="tour_attribute_wrapper">
+                                        <div class="tour_attribute_rating">
+                                            <div class="br-theme-fontawesome-stars-o">
+                                                <div class="br-widget">
+                                                    <a href="javascript:;" class="br-selected"></a>
+                                                    <a href="javascript:;" class="br-selected"></a>
+                                                    <a href="javascript:;" class="br-selected"></a>
+                                                    <a href="javascript:;" class="br-selected"></a>
+                                                    <a href="javascript:;"></a>
+                                                </div>
+                                            </div>
+                                            <div class="tour_attribute_rating_count">
+                                                4&nbsp; reviews </div>
+                                        </div>
+                                        <div class="tour_attribute_days">
+                                            <span class="ti-time"></span> 5&nbsp;days </div>
+                                    </div>
+                                    <br class="clear">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

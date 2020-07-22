@@ -1,0 +1,60 @@
+{% extends "ClientTemplate/base.html" %}
+{% load static %}
+
+{% block content %}
+<div id="page_caption" class="hasbg parallax    blog_wrapper" style="background-image:url(/static/clientstatic/upload/imagesc.jpg);">
+    <div class="overlay_background" style="background:#000000;background:rgb(0,0,0,0.5);background:rgba(0,0,0,0.3);"></div>
+
+    <div class="page_title_wrapper">
+        <div class="page_title_inner">
+            <div class="page_title_content">
+                <h1>Blogs</h1>
+                <!-- <div class="page_tagline">
+                    This is sample of page tagline and you can set it up using page option </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Begin content -->
+<div id="page_content_wrapper" class="hasbg ">
+    <div class="single_tour_content">
+        <p class="p1">{{categoryObject.category_desc|safe}}</p>
+    </div>
+    <!-- Begin content -->
+    <div class="inner">
+        <div class="inner_wrapper nopadding">
+            <div id="page_main_content" class="sidebar_content full_width fixed_column">
+                <div class="standard_wrapper">
+                    <div id="portfolio_filter_wrapper" class="gallery classic three_cols portfolio-content section content clearfix" data-columns="3">
+                        
+                        {% for blog in listBLogs %}
+                        <div class="element grid classic2_cols animated2">
+                            <div class="one_half gallery2 classic static filterable portfolio_type themeborder" data-id="post-2">
+                                <a class="tour_image" href="{% url 'travelsapp:blogDetails' blog.id %}">
+                                    <img src="/media/{{blog.image}}" alt="French Autumn">
+                                </a>
+                                <div class="post_header_wrapper">
+                                    <div class="post_header grid">
+                                        <div class="post_detail single_post">
+                                            <span class="post_info_date">
+                                                <a href="{% url 'travelsapp:blogDetails' blog.id %}" title="Memorial Day to Someone Told Me to Travel">{{blog.Date}}</a>
+                                            </span>
+                                        </div>
+                                        <h6><a href="{% url 'travelsapp:blogDetails' blog.id %}" title="Memorial Day to Someone Told Me to Travel">{{blog.title}}</a></h6>
+                                    </div>
+                                    {{blog.content|striptags|truncatechars:"100"}}
+                                    <div class="post_button_wrapper">
+                                        <a class="readmore" href="{% url 'travelsapp:blogDetails' blog.id %}">Read More<span class="ti-angle-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

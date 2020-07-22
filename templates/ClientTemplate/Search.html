@@ -1,0 +1,11 @@
+{% extends "ClientTemplate/base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Search Template</h1>
+
+
+{% for package in allpackages %}
+{{package.package_name}}
+{% endfor %}
+{% endblock %}

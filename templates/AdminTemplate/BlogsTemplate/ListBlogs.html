@@ -1,0 +1,77 @@
+{% extends 'admintemplate/adminBase.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h2 class="mt-4">BLOGS</h2>
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminHome' %}">Dashboard</a> </li>
+                <li class="breadcrumb-item active">Blogs</li>
+            </ol>
+            <div class="">
+                <a class="btn btn-outline-success my-2 " href="{% url 'travelsapp:adminBlogAdd' %}"><i class="fa fa-plus"></i> &nbsp; Add Blogs</a>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Blogs List</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Date</th>
+                                    <th>Image</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for blog in blogsList %}
+                                <tr>
+                                    <td>{{blog.title}}</td>
+                                    <td>{{blog.author}}</td>
+                                    <td>{{blog.Date}}</td>
+                                    <td class="d-flex justify-content-center align-item-center" style="width: 300px;"><img src="/media/{{blog.image}}" alt="" width="50%"> </td>
+                                   
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input 
+                                            class="updateToggle" 
+                                            data-onstyle="success" 
+                                            data-offstyle="info" 
+                                            data-size="small" 
+                                            id="blog-{{blog.id}}" 
+                                            doFunction="update-blog-status" 
+                                            data_id="{{blog.id}}" 
+                                            type="checkbox" 
+                                            data-toggle="toggle" 
+                                            {% if blog.active == True %} checked {% endif %} 
+                                            data-on="Active" 
+                                            data-off="Inactive" 
+                                            value="{{blog.active}}">
+                                            
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'travelsapp:adminBlogUpdate' blog.id %}" class="btn btn-outline-info my-1"><span class="far fa-edit"></span> </a>
+                                        <a class="btn btn-outline-danger my-1 deleteRecord" rel="{{blog.id}}" rel1="delete-blog" href="javascript:"><span class="far fa-trash-alt"></span> </a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

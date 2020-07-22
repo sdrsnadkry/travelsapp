@@ -1,0 +1,76 @@
+{% extends 'admintemplate/adminBase.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h2 class="mt-4">CATEGORIES</h2>
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminHome' %}">Dashboard</a> </li>
+                <li class="breadcrumb-item active">Category</li>
+            </ol>
+            <div class="">
+                <a class="btn btn-outline-success my-2 " href="{% url 'travelsapp:adminCategoryAdd' %}"><i class="fa fa-plus"></i> &nbsp; Add Category</a>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Category List</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Url</th>
+                                    <th>Description</th>
+                                    <th style="width: 200px;" >Image</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for category in categoriesList %}
+                                <tr>
+                                    <td>{{category.category_name}}</td>
+                                    <!-- <td>{{category.section_id}}</td> -->
+                                    <td>{{category.category_url}}</td>
+                                    <td>{{category.category_desc}}</td>
+                                    <td class="d-flex align-item-center justify-content-center"><img class="img-fluid" src="{{category.category_image.url}}" alt="" width="50%"></td>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                            <input 
+                                            class="updateToggle" 
+                                            data-onstyle="success" 
+                                            data-offstyle="info" 
+                                            data-size="small" 
+                                            id="category-{{category.id}}" 
+                                            doFunction="update-category-status" 
+                                            data_id="{{category.id}}" 
+                                            type="checkbox" 
+                                            data-toggle="toggle" 
+                                            {% if category.active == True %} checked {% endif %} 
+                                            data-on="Active" 
+                                            data-off="Inactive" 
+                                            value="{{category.active}}">
+                                            
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'travelsapp:adminCategoryUpdate' category.id %}" class="btn btn-outline-info my-1"><span class="far fa-edit"></span> </a>
+                                        <a class="btn btn-outline-danger my-1 deleteRecord" rel="{{category.id}}" rel1="delete-category" href="javascript:"><span class="far fa-trash-alt"></span> </a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

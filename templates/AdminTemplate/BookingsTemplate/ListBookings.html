@@ -1,0 +1,107 @@
+{% extends 'admintemplate/adminBase.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h2 class="mt-4">BOOKINGS</h2>
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminHome' %}">Dashboard</a> </li>
+                <li class="breadcrumb-item active">Booking</li>
+            </ol>
+            <div class="">
+                <!-- <a class="btn btn-outline-success my-2 " href="{% url 'travelsapp:adminCategoryAdd' %}"><i class="fa fa-plus"></i> &nbsp; Add Category</a> -->
+            </div>
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Category List</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Email </th>
+                                        <th>Phone</th>
+                                        <th>Package Name</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for booking in bookingsList %}
+                                    <tr>
+                                        <td>{{booking.fullname}}</td>
+                                        <td>{{booking.email}}</td>
+                                        <td>{{booking.phone}}</td>
+                                        <td>{{booking.package_name}}</td>
+                                        <td>
+                                            <a ype="button" data-toggle="modal" data-target="#exampleModal-{{booking.id}}" class="btn btn-outline-primary my-1"><span class="far fa-eye"></span></a>
+                                            <a href="" class="btn btn-outline-info my-1"><span class="far fa-edit"></span></a>
+                                            <a class="btn btn-outline-danger my-1 deleteRecord" rel="{{booking.id}}" rel1="delete-booking" href="javascript:"><span class="far fa-trash-alt"></span></a>
+                                        </td>
+
+                                    </tr>
+                                    <!-- Button trigger modal -->
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal-{{booking.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{booking.fullname}}'\s Booking</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            Package Name: <br>
+                                                            Email: <br>
+                                                            Address: <br>
+                                                            Phone: <br>
+                                                            Number Of Person: <br>
+                                                            Date: <br>
+                                                            Pickup Details: <br>
+                                                            Message: <br>
+
+
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            {{booking.package_name}} <br>
+                                                            {{booking.email}} <br>
+                                                            {{booking.address}} <br>
+                                                            {{booking.phone}} <br>
+                                                            {{booking.count}} <br>
+                                                            {{booking.date}} <br>
+                                                            {{booking.pickup}} <br>
+                                                            {{booking.message}} <br>
+
+                                                            <br>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}

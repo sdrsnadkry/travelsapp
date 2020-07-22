@@ -1,0 +1,307 @@
+{% extends "ClientTemplate/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="ppb_wrapper  ">
+    <div class="one withsmallpadding ppb_tour_search_background parallax withbg " style="text-align:center;height:800px;background-image:url(/static/clientstatic/upload/imagesc.jpg);background-position: center center;color:#ffffff;">
+        <div class="overlay_background" style="background:#000000;background:rgb(0,0,0,0.5);background:rgba(0,0,0,0.3);"></div>
+        <div class="center_wrapper">
+            <div class="inner_content">
+                <div class="standard_wrapper">
+                    <h2 class="ppb_title" style="color:#ffffff;">Choose Your Destination</h2>
+                    <div class="page_tagline" style="color:#ffffff;">Seect Country & Enter your buget , We will select package for you</div>
+                    <form id="tour_search_form" class="tour_search_form" method="get" action="/search">
+                        <div class="tour_search_wrapper">
+                           
+                            <div class="one_fourth themeborder">
+                                <select id="search_country" name="search_country">
+                                    {%for section in allSectionsMenu %}
+                                    <option value="{{section.id}}">{{section.section_name}}</option>
+                                    {% endfor %}
+                                    
+                                </select>
+                                <span class="ti-angle-down"></span>
+                            </div>
+                            <div class="one_fourth themeborder">
+                                <input id="min_budget" name="min_budget" type="text" placeholder="Min budget ex. 500">
+                                <span>Rs</span>
+                            </div>
+                            <div class="one_fourth themeborder">
+                                <input id="max_budget" name="max_budget" type="text" placeholder="Max budget ex. 5000">
+                                <span>Rs</span>
+                            </div>
+                            <div class="one_fourth last themeborder">
+                                <input id="tour_search_btn" type="submit" class="button" value="Search">
+                            </div>
+                            <br class="clear">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="one withsmallpadding ppb_header " style="text-align:center;padding:0px 0 0px 0;margin-top:70px;">
+    <div class="standard_wrapper">
+        <div class="page_content_wrapper">
+            <div class="inner">
+                <div style="margin:auto;width:100%">
+                    <h2 class="ppb_title" style="">Popular Destinations</h2>
+                    <div class="page_tagline" style="">World&#039;s best tourist destinations</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ppb_destination_grid one nopadding " style="margin-top:50px;margin-bottom:50px;">
+    <div class="page_content_wrapper page_main_content sidebar_content full_width fixed_column">
+        <div class="standard_wrapper">
+            <div id="15675891342113546341" class="portfolio_filter_wrapper gallery grid portrait four_cols" data-columns="4">
+                    
+                    {% for popular in popularPlaces|slice:"4" %}
+                <div class="element grid baseline classic4_cols animated1">
+                    <div class="one_fourth gallery4 grid static filterable portfolio_type themeborder" style="background-image:url(/media/{{popular.category_image}});">
+                        <a class="tour_image" href="{% url 'travelsapp:packages' popular.id %}"></a>
+                        <div class="portfolio_info_wrapper">
+                            <div class="portfolio_info_content">
+                                <h3>{{popular.category_name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="one withsmallpadding ppb_header " style="text-align:center;padding:0px 0 0px 0;margin-top:10px;margin-bottom:50px;">
+    <div class="standard_wrapper">
+        <div class="page_content_wrapper">
+            <div class="inner">
+                <div style="margin:auto;width:100%">
+                    <h2 class="ppb_title" style="">Best Value Trips</h2>
+                    <div class="page_tagline" style="">Best offers trips from us</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ppb_tour_classic one nopadding " style="margin-bottom:50px;">
+    <div class="page_content_wrapper page_main_content sidebar_content full_width fixed_column">
+        <div class="standard_wrapper">
+            <div id="1567589134228149190" class="portfolio_filter_wrapper gallery classic three_cols" data-columns="3">
+                {% for value in valuePackages %}
+                <div class="element grid classic3_cols animated1">
+                    <div class="one_third gallery3 classic static filterable portfolio_type themeborder">
+                        <a class="tour_image" href="{% url 'travelsapp:packageDetails' value.id %}">
+                            <img src="/media/{{value.package_image}} " alt="French Autumn">
+                            <div class="tour_price has_discount">
+                                <span class="normal_price">
+                                    Rs {{value.package_price}} </span> Rs {{value.package_discount}}
+                            </div>
+                        </a>
+                        <div class="portfolio_info_wrapper">
+                            <a class="tour_link" href="{% url 'travelsapp:packageDetails' value.id %}">
+                                <h4>{{value.package_name}}</h4>
+                            </a>
+                            <div class="tour_excerpt">
+                                <p>{{value.section}}</p>
+                            </div>
+                            <div class="tour_attribute_wrapper">
+                                <div class="tour_attribute_rating">
+                                    <div class="br-theme-fontawesome-stars-o">
+                                        <div class="br-widget">
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;"></a>
+                                        </div>
+                                    </div>
+                                    <div class="tour_attribute_rating_count">4&nbsp;reviews</div>
+                                </div>
+                                <div class="tour_attribute_days">
+                                    <span class="ti-time"></span>5&nbsp;days</div>
+                            </div>
+                            <br class="clear">
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="one withsmallpadding ppb_header " style="text-align:center;padding:0px 0 0px 0;margin-top:10px;margin-bottom:50px;">
+    <div class="standard_wrapper">
+        <div class="page_content_wrapper">
+            <div class="inner">
+                <div style="margin:auto;width:100%">
+                    <h2 class="ppb_title" style="">Recommended </h2>
+                    <div class="page_tagline" style="">We recommended following trips to everyone</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ppb_tour_classic one nopadding " style="margin-bottom:50px;">
+    <div class="page_content_wrapper page_main_content sidebar_content full_width fixed_column">
+        <div class="standard_wrapper">
+            <div id="1567589134228149190" class="portfolio_filter_wrapper gallery classic three_cols" data-columns="3">
+                {% for recommended in recommendedTrips %}
+                <div class="element grid classic3_cols animated1">
+                    <div class="one_third gallery3 classic static filterable portfolio_type themeborder">
+                        <a class="tour_image" href="{% url 'travelsapp:packageDetails' recommended.id %}">
+                            <img src="/media/{{recommended.package_image}} " alt="French Autumn">
+                            <div class="tour_price">
+                                Rs {{recommended.package_price}}
+                            </div>
+                        </a>
+                        <div class="portfolio_info_wrapper">
+                            <a class="tour_link" href="{% url 'travelsapp:packageDetails' recommended.id %}">
+                                <h4>{{recommended.package_name}}</h4>
+                            </a>
+                            <div class="tour_excerpt">
+                                <p>{{recommended.section}}</p>
+                            </div>
+                            <div class="tour_attribute_wrapper">
+                                <div class="tour_attribute_rating">
+                                    <div class="br-theme-fontawesome-stars-o">
+                                        <div class="br-widget">
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;" class="br-selected"></a>
+                                            <a href="javascript:;"></a>
+                                        </div>
+                                    </div>
+                                    <div class="tour_attribute_rating_count">4&nbsp;reviews</div>
+                                </div>
+                                <div class="tour_attribute_days">
+                                    <span class="ti-time"></span>5&nbsp;days</div>
+                            </div>
+                            <br class="clear">
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="one withsmallpadding ppb_header " style="text-align:center;padding:0px 0 0px 0;margin-bottom:40px;">
+    <div class="standard_wrapper">
+        <div class="page_content_wrapper">
+            <div class="inner">
+                <div style="margin:auto;width:100%">
+                    <h2 class="ppb_title" style="">Why Choose Us</h2>
+                    <div class="page_tagline" style="">Here are reasons you should plan trip with us</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="standard_wrapper">
+    <div class="one_third withsmallpadding ppb_text" style="text-align:center;padding:0px 0 0px 0;margin-bottom:70px;">
+        <div class="standard_wrapper">
+            <div class="page_content_wrapper">
+                <div class="inner">
+                    <div style="margin:auto;width:100%">
+                        <p><img class="alignnone wp-image-3106 size-medium" src="{% static 'clientstatic/upload/Map-Marker-300x300.png' %}" width="150" height="150" alt=""></p>
+                        <h4 class="p1"><span class="s1"><b>Handpicked Hotels</b></span></h4>
+                        <p>We pick best hotels for you so that you can enjoy your travel to the fullest.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="standard_wrapper">
+    <div class="one_third withsmallpadding ppb_text" style="text-align:center;padding:0px 0 0px 0;margin-bottom:70px;">
+        <div class="standard_wrapper">
+            <div class="page_content_wrapper">
+                <div class="inner">
+                    <div style="margin:auto;width:100%">
+                        <p><img class="alignnone wp-image-3107 size-medium" src="{% static 'clientstatic/upload/Worldwide-Location-300x300.png' %}" width="150" height="150" alt=""></p>
+                        <h4 class="p1"><span class="s1"><b>World Class Service</b></span></h4>
+                        <p>We provide world class service to all national and international tourist </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="standard_wrapper">
+    <div class="one_third last withsmallpadding ppb_text" style="text-align:center;padding:0px 0 0px 0;margin-bottom:70px;">
+        <div class="standard_wrapper">
+            <div class="page_content_wrapper">
+                <div class="inner">
+                    <div style="margin:auto;width:100%">
+                        <p><img class="alignnone wp-image-3108 size-medium" src="{% static 'clientstatic/upload/Hot-Air-Balloon-300x300.png' %}" width="140" height="140" alt=""></p>
+                        <h4 class="p1"><span class="s1"><b>Best Price Guarantee</b></span></h4>
+                        <p>We are the only one who provide best services to our costumers at such an affordable prices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="parallax" data-jarallax-video="https://www.youtube.com/watch?v=ut-U-4m42aQ" style="height:60vh; "></div>
+<div class="one withsmallpadding ppb_header " style="text-align:center;padding:0px 0 0px 0;margin-top:70px;margin-bottom:50px;">
+    <div class="standard_wrapper">
+        <div class="page_content_wrapper">
+            <div class="inner">
+                <div style="margin:auto;width:100%">
+                    <h2 class="ppb_title" style="">Articles &amp; Tips</h2>
+                    <div class="page_tagline" style="">Explore some of the best tips from around the world</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="standard_wrapper">
+    <div class="ppb_blog_grid one nopadding" style="padding:0px 0 0px 0;margin-bottom:50px;">
+        <div class="page_content_wrapper">
+            <div class="inner">
+                <div class="inner_wrapper">
+                    <div class="blog_grid_wrapper sidebar_content full_width ppb_blog_posts">
+
+                        {% for blog in allBlogs|slice:"3" %}
+                        <div id="post-81" class="post type-post hentry status-publish ">
+                            <div class="post_wrapper grid_layout">
+                                <div class="post_img small static">
+                                    <a href="{% url 'travelsapp:blogDetails' blog.id %}">
+                                        <img src="/media/{{blog.image}}" alt="Memorial Day to Someone Told Me to Travel" class="">
+                                    </a>
+                                </div>
+                                <div class="post_header_wrapper">
+                                    <div class="post_header grid">
+                                        <div class="post_detail single_post">
+                                            <span class="post_info_date">
+                                                <a href="{% url 'travelsapp:blogDetails' blog.id %}" title="Memorial Day to Someone Told Me to Travel">{{blog.Date}}</a>
+                                            </span>
+                                        </div>
+                                        <h6><a href="{% url 'travelsapp:blogDetails' blog.id %}" title="Memorial Day to Someone Told Me to Travel">{{blog.title}}</a></h6>
+                                    </div>
+                                    <p>{{blog.content|striptags|truncatechars:"100"}}
+                                    <div class="post_button_wrapper">
+                                        <a class="readmore" href="{% url 'travelsapp:blogDetails' blog.id %}">Read More<span class="ti-angle-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

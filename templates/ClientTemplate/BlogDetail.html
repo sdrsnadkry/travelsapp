@@ -1,0 +1,86 @@
+{% extends "ClientTemplate/base.html" %}
+{% load static %}
+
+{% block content %}
+<div id="page_caption" class="hasbg parallax" style="background-image:url(/media/{{blogObject.image}});">
+    <div class="overlay_background" style="background:#000000;background:rgb(0,0,0,0.5);background:rgba(0,0,0,0.3);"></div>
+    <div class="page_title_wrapper">
+        <div class="page_title_inner">
+            <div class="page_title_content">
+                <h1>{{blogObject.title}}</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Begin content -->
+<div id="page_content_wrapper" class="hasbg ">
+    <div class="inner">
+        <!-- Begin main content -->
+        <div class="inner_wrapper">
+            <div class="sidebar_wrapper">
+                <div class="sidebar_top"></div>
+                <div class="sidebar">
+                    <div class="content">
+
+
+                        <ul class="sidebar_widget">
+
+                            <li id="grandtour_tour_posts-11" class="widget Grandtour_Tour_Posts">
+                                <h2 class="widgettitle"></h2>
+
+                                {% for blog in allBlogss %}
+
+                                <div class="one gallery1 grid static filterable portfolio_type themeborder" style="background-image:url(/media/{{blog.image}});">
+                                    <a class="tour_image" href="{% url 'travelsapp:blogDetails' blog.id %}"></a>
+                                    <div class="portfolio_info_wrapper">
+                                        
+                                        <h5>{{blog.title}}</h5>
+                                        <!-- <div class="tour_attribute_wrapper">
+                                            <div class="tour_attribute_rating">
+                                                <div class="br-theme-fontawesome-stars-o">
+                                                    <div class="br-widget">
+                                                        <a href="javascript:;" class="br-selected"></a>
+                                                        <a href="javascript:;" class="br-selected"></a>
+                                                        <a href="javascript:;" class="br-selected"></a>
+                                                        <a href="javascript:;" class="br-selected"></a>
+                                                        <a href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <br class="clear">
+
+                                {% endfor %}
+                            </li>
+                        </ul>
+                        <div class="single_tour_users_online_wrapper themeborder">
+                            <div class="single_tour_users_online_icon">
+                                <span class="ti-info-alt"></span>
+                            </div>
+                            <div class="single_tour_users_online_content">
+                                <strong>131</strong> traveler(s) are considering our tours right now! </div>
+                        </div>
+                    </div>
+                </div>
+                <br class="clear">
+                <div class="sidebar_bottom"></div>
+            </div>
+            <div class="sidebar_content ">
+                <br class="clear">
+                <div class="single_tour_content">
+                    <h4 class="p1">Overview</h4>
+                    <p class="p1">{{blogObject.content|safe}}</p>
+
+                </div>
+            </div>
+        </div>
+        <br class="clear">
+        <!-- #comment-## -->
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'AdminTemplate/AdminBase.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h4 class="mt-4">BLOGS</h4>
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminHome' %}">Dashboard</a> </li>
+                <li class="breadcrumb-item "><a href="{% url 'travelsapp:adminBlogView' %}">Blogs</a> </li>
+                <li class="breadcrumb-item active">Add/Edit Blogs</li>
+            </ol>
+
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Add/Edit Blogs</div>
+                <div class="card-body">
+                    <form action="." method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class="">
+                            <button class="btn btn-outline-success px-5">Submit</button>
+                        </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock %}
